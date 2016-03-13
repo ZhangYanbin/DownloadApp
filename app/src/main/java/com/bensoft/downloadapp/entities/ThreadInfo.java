@@ -3,7 +3,7 @@ package com.bensoft.downloadapp.entities;
 /**
  * Created by 炎宾 on 2016/3/11.
  */
-public class ThreadInfo {
+public class ThreadInfo implements Entity {
     private int mId;
     private FileInfor mFile;
     private int mStart;

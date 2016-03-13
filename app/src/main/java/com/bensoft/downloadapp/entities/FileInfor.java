@@ -1,12 +1,14 @@
 package com.bensoft.downloadapp.entities;
 
+import android.database.Cursor;
+
 import java.io.Serializable;
 
 /**
  * File information container
  * Created by 炎宾 on 2016/3/11.
  */
-public class FileInfor implements Serializable {
+public class FileInfor implements Serializable,Entity {
     private int mId;
     private String mUrl;
     private long mLength;
@@ -83,4 +85,5 @@ public class FileInfor implements Serializable {
                 ", mProgress=" + mProgress +
                 '}';
     }
+
 }
