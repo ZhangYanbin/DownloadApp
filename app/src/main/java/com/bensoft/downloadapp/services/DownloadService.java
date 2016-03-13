@@ -91,6 +91,7 @@ public class DownloadService extends IntentService {
      */
     private void handleStartFileDownloadAction(FileInfor infor, String param2) {
         Log.e(TAG, "handle start file download action for : \n" + infor.toString());
+        new InitThread(infor).start();
     }
 
     /**
@@ -106,8 +107,8 @@ public class DownloadService extends IntentService {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case MSG_INIT:
-                    FileInfor fileInfor = (FileInfor)msg.obj;
-                    Log.e(TAG,"init file + \n" + fileInfor.toString());
+                    FileInfor fileInfor = (FileInfor) msg.obj;
+                    Log.e(TAG, "init file + \n" + fileInfor.toString());
                     break;
                 default:
                     break;
@@ -152,6 +153,10 @@ public class DownloadService extends IntentService {
                 }
 
                 File downloadFile = new File(downloadDirectory, mFileinfor.getmFileName());
+                if (!downloadFile.exists()) {
+                    downloadFile.createNewFile();
+                }
+
                 randomAccessFile = new RandomAccessFile(downloadFile, "rwd");
                 randomAccessFile.setLength(fileLength);
                 mFileinfor.setmLength(fileLength);
